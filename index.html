@@ -47,25 +47,6 @@
             margin-bottom: 15px;
         }
 
-        /* 音樂播放器區塊 */
-        .audio-container {
-            background-color: #fff0f5;
-            padding: 8px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 1px dashed var(--pink-primary);
-        }
-        .audio-container p {
-            margin: 0 0 5px 0;
-            font-size: 12px;
-            color: var(--pink-primary);
-            font-weight: bold;
-        }
-        audio {
-            width: 100%;
-            height: 30px;
-        }
-
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -183,13 +164,6 @@
             <h1>用閃亮的歌聲開始大合唱！</h1>
             <div class="subtitle" id="question-number">第 1 / 10 題</div>
             
-            <div class="audio-container">
-                <p>🎵 背景音樂（我找不到載點 沒有歌曲）</p>
-                <audio id="bgm" controls loop>
-                    <source src="bgm.mp3" type="audio/mp3">
-                </audio>
-            </div>
-            
             <div class="progress-bar"><div class="progress" id="progress"></div></div>
 
             <div class="question-image-container" id="question-img-block">
@@ -210,7 +184,7 @@
 
     <script>
         // ==========================================
-        // 🛠️ 10 題經典題庫設定區
+        // 🛠️ 10 題經典題庫設定區（已完全修復除錯）
         // ==========================================
         const quizData = [
             {
@@ -225,13 +199,13 @@
                 correct: 2
             },
             {
-                question: "第 2 題：這是哪一位公主,
+                question: "第 2 題：這是哪一位公主？", // ⭕ 已補上引號
                 questionImg: "noel.jpg", 
                 options: [
-                    { text: "諾威爾"},
-                    { text: "香連" },
-                    { text: "米兒" },
-                    { text: "米凱爾"}
+                    { text: "諾威爾", img: "" }, // ⭕ 已補上 img 防止破圖
+                    { text: "香連", img: "" },
+                    { text: "米兒", img: "" },
+                    { text: "米凱爾", img: "" }
                 ],
                 correct: 0
             },
@@ -239,10 +213,10 @@
                 question: "第 3 題：美人魚公主戰鬥前都會說哪一句話？",
                 questionImg: "", 
                 options: [
-                    { text: "用閃亮的歌聲開始大合唱！"},   
-                    { text: "用閃亮的歌聲開始現場演唱！"},   
-                    { text: "閃亮耀眼的愛之雨下個不停！"},    
-                    { text: "狂歡派對，用閃亮的歌聲開始！"}
+                    { text: "用閃亮的歌聲開始大合唱！", img: "" },
+                    { text: "用閃亮的歌聲開始現場演唱！", img: "" },
+                    { text: "閃亮耀眼的愛之雨下個不停！", img: "" },
+                    { text: "狂歡派對，用閃亮的歌聲開始！", img: "" }
                 ],
                 correct: 1
             },
@@ -250,10 +224,10 @@
                 question: "第 4 題：擁有「水色真珠」，在人間化名為？",
                 questionImg: "", 
                 options: [
-                    { text: "七海波音" },
-                    { text: "寶生波音" },
-                    { text: "洞院波音" },
-                    { text: "珍珠波音" }
+                    { text: "七海波音", img: "" },
+                    { text: "寶生波音", img: "" },
+                    { text: "洞院波音", img: "" },
+                    { text: "珍珠波音", img: "" }
                 ],
                 correct: 1
             },
@@ -261,21 +235,21 @@
                 question: "第 5 題：總是穿著黑色衣服、負責唱歌和吐槽妹妹的反派「黑美人姐妹花」姐姐是誰？",
                 questionImg: "bad.jpg", 
                 options: [
-                    { text: "瑪莉亞" },
-                    { text: "咪咪"},
-                    { text: "秀秀"},
-                    { text: "愛莉爾"}
+                    { text: "瑪莉亞", img: "" },
+                    { text: "咪咪", img: "" },
+                    { text: "秀秀", img: "" },
+                    { text: "愛莉爾", img: "" }
                 ],
                 correct: 2
             },
             {
                 question: "第 6 題：圖片中是誰",
-                questionImg: "", 
+                questionImg: "kate.jpg", 
                 options: [
-                    { text: "海斗"},
-                    { text: "理人"},
-                    { text: "雅宏"},
-                    { text: "凱特"" }
+                    { text: "海斗", img: "" },
+                    { text: "理人", img: "" },
+                    { text: "雅宏", img: "" },
+                    { text: "凱特", img: "" } // ⭕ 已修正多餘的引號
                 ],
                 correct: 3
             },
@@ -283,10 +257,10 @@
                 question: "第 7 題：「狂風暴雨的海誰在等待」下一句是?",
                 questionImg: "", 
                 options: [
-                    { text: "我們是堅強的小孩"},
-                    { text: "我會努力向前奔跑"},
-                    { text: "人生必須不斷奔跑"},
-                    { text: "我會努力振作起來"}
+                    { text: "我們是堅強的小孩", img: "" },
+                    { text: "我會努力向前奔跑", img: "" },
+                    { text: "人生必須不斷奔跑", img: "" },
+                    { text: "我會努力振作起來", img: "" }
                 ],
                 correct: 0
             },
@@ -294,12 +268,12 @@
                 question: "第 8 題：圖片中的反派叫什麼名字?",
                 questionImg: "馬利亞.jpg", 
                 options: [
-                    { text: "馬利亞"},
-                    { text: "伊茲爾"},
-                    { text: "悠莉"},
-                    { text: "米兒"}
+                    { text: "馬利亞", img: "" },
+                    { text: "伊茲爾", img: "" },
+                    { text: "悠莉", img: "" },
+                    { text: "米兒", img: "" }
                 ],
-                correct: 1
+                correct: 0
             },
             {
                 question: "第 9 題：原本擁有橙色真珠，卻因悲傷與憤怒一度投靠反派凱特的人魚公主是？",
@@ -316,10 +290,10 @@
                 question: "第 10 題：【終極鐵粉題】小波在陸地上與反派水妖「悠莉」相戀，請問小波的真實幻獸身分是？",
                 questionImg: "", 
                 options: [
-                    { text: "海馬" },
-                    { text: "獨角獸"},
-                    { text: "企鵝"},
-                    { text: "飛馬（神獸希波卡帕斯）"}
+                    { text: "海馬", img: "" },
+                    { text: "獨角獸", img: "" },
+                    { text: "企鵝", img: "" },
+                    { text: "飛馬（神獸希波卡帕斯）", img: "" }
                 ],
                 correct: 3
             }
@@ -345,8 +319,6 @@
             quizScreen.style.display = 'block';
             resultScreen.style.display = 'none';
             loadQuestion();
-            const audio = document.getElementById('bgm');
-            audio.play().catch(() => {});
         }
 
         function loadQuestion() {
@@ -375,11 +347,14 @@
                 const button = document.createElement('button');
                 button.classList.add('btn-img-option');
                 
-                const img = document.createElement('img');
-                img.classList.add('option-img');
-                img.src = option.img;
-                img.alt = "選項圖片";
-                button.appendChild(img);
+                // 💡 只有當有填寫圖片名稱時才建立 <img> 標籤，防止沒填圖片時出現裂開的破圖符號
+                if (option.img && option.img.trim() !== "") {
+                    const img = document.createElement('img');
+                    img.classList.add('option-img');
+                    img.src = option.img;
+                    img.alt = "選項圖片";
+                    button.appendChild(img);
+                }
                 
                 // 只有當 text 有內容時才渲染文字
                 if (option.text && option.text.trim() !== "") {
